@@ -1,0 +1,74 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red127\green0\blue85;\red106\green62\blue62;\red63\green127\blue95;
+\red127\green159\blue191;\red42\green0\blue255;\red0\green0\blue192;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs22 \cf2 package\cf0  project_text;\
+\
+\cf2 import\cf0  java.io.BufferedReader;\
+\cf2 import\cf0  java.io.File;\
+\cf2 import\cf0  java.io.FileReader;\
+\cf2 import\cf0  java.io.IOException;\
+\cf2 import\cf0  java.util.HashMap;\
+\
+\cf2 public\cf0  \cf2 class\cf0  Song_List \{\
+\
+	\cf2 public\cf0  \cf2 static\cf0  \cf2 void\cf0  main(String[] \cf3 args\cf0 ) \{\
+		\cf4 // \cf5 TODO\cf4  Auto-generated method stub\cf0 \
+		\cf2 int\cf0 [] \cf3 SongNumber\cf0  = \cf2 new\cf0  \cf2 int\cf0 [8162];\
+        String[] \cf3 SongName\cf0  = \cf2 new\cf0  String[8162];\
+        String[] \cf3 Author\cf0  = \cf2 new\cf0  String[8162];\
+		readFileByLines(\cf6 "/Users/Sony/Desktop/PlayListApp 2/PlaylistApp-Datasets/song_list.txt"\cf0 , \cf3 SongNumber\cf0 , \cf3 SongName\cf0 , \cf3 Author\cf0 );\
+		HashMap<Integer,Integer> \cf3 mp\cf0  = \cf2 new\cf0  HashMap<Integer,Integer>();\
+		\cf2 for\cf0  (\cf2 int\cf0  \cf3 i\cf0  = 0; \cf3 i\cf0  < 3168; \cf3 i\cf0 ++) \{\
+			\cf3 mp\cf0 .put(\cf3 i\cf0 , 0);\
+		\}\
+		\
+		System.\cf7 out\cf0 .println(\cf3 SongNumber\cf0 [3167]);\
+		System.\cf7 out\cf0 .println(\cf3 SongName\cf0 [3167]);\
+		System.\cf7 out\cf0 .println(\cf3 Author\cf0 [3167]);\
+		System.\cf7 out\cf0 .println(\cf3 mp\cf0 .get(10));\
+		\
+	\}\
+	\cf2 public\cf0  \cf2 static\cf0  \cf2 void\cf0  readFileByLines(String \cf3 fileName\cf0 , \cf2 int\cf0 [] \cf3 SongNumber\cf0 , String[] \cf3 SongName\cf0 , String[] \cf3 Author\cf0 ) \{\
+        File \cf3 file\cf0  = \cf2 new\cf0  File(\cf3 fileName\cf0 );\
+        BufferedReader \cf3 reader\cf0  = \cf2 null\cf0 ;\
+        \cf2 try\cf0  \{\
+            \cf3 reader\cf0  = \cf2 new\cf0  BufferedReader(\cf2 new\cf0  FileReader(\cf3 file\cf0 ));\
+            String \cf3 tempString\cf0  = \cf2 null\cf0 ;\
+            \cf2 int\cf0  \cf3 i\cf0  = 0;\
+            \cf2 while\cf0  ((\cf3 tempString\cf0  = \cf3 reader\cf0 .readLine()) != \cf2 null\cf0 ) \{\
+                \cf2 int\cf0  \cf3 j\cf0  = 0;\
+                \cf2 while\cf0 (\cf3 tempString\cf0 .charAt(\cf3 j\cf0 ) != \cf6 '\\t'\cf0 ) \{\
+                	\cf3 j\cf0 ++;\
+                \}\
+                String \cf3 num\cf0  = \cf3 tempString\cf0 .substring(0, \cf3 j\cf0 );\
+                \cf3 SongNumber\cf0 [\cf3 i\cf0 ] = Integer.parseInt(\cf3 num\cf0 );\
+                \cf3 j\cf0 ++;\
+                \cf2 int\cf0  \cf3 n\cf0  = \cf3 j\cf0 ;\
+                \cf2 while\cf0 (\cf3 tempString\cf0 .charAt(\cf3 n\cf0 ) != \cf6 '\\t'\cf0 ) \{\
+                	\cf3 n\cf0 ++;\
+                \}\
+                \cf3 SongName\cf0 [\cf3 i\cf0 ] = \cf3 tempString\cf0 .substring(\cf3 j\cf0 , \cf3 n\cf0 );\
+                \cf3 n\cf0 ++;\
+                \cf2 int\cf0  \cf3 m\cf0  = \cf3 n\cf0 ;\
+                \cf3 Author\cf0 [\cf3 i\cf0 ] = \cf3 tempString\cf0 .substring(\cf3 m\cf0 );\
+                \cf3 i\cf0 ++;\
+            \}\
+            \cf3 reader\cf0 .close();\
+        \} \cf2 catch\cf0  (IOException \cf3 e\cf0 ) \{\
+            \cf3 e\cf0 .printStackTrace();\
+        \} \cf2 finally\cf0  \{\
+            \cf2 if\cf0  (\cf3 reader\cf0  != \cf2 null\cf0 ) \{\
+                \cf2 try\cf0  \{\
+                    \cf3 reader\cf0 .close();\
+                \} \cf2 catch\cf0  (IOException \cf3 e1\cf0 ) \{\
+                \}\
+            \}\
+        \}\
+        \
+    \}\
+\}}
