@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,6 +29,9 @@ import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
 
+import java.io.*;
+import java.lang.reflect.Array;
+
 public class HellowWorld {
 
 	private JFrame frame;
@@ -53,15 +57,17 @@ public class HellowWorld {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
 	 */
-	public HellowWorld() {
+	public HellowWorld() throws IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
 	 */
-	private void initialize() {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setBackground(Color.BLACK);
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -114,16 +120,27 @@ public class HellowWorld {
 		btnRefresh.setBounds(615, 134, 88, 29);
 		frame.getContentPane().add(btnRefresh);
 		
+		FileReader fr = 
+				new FileReader("/Users/muyunyan/Documents/WindowBuilder/PlaylistApp-Datasets/all_playlists.txt");
+		BufferedReader br = new BufferedReader(fr);
+		String[] song = new String[8];
+		String c;
+		for (int i = 0; i < 8 && (c = br.readLine()) != null;i++){
+			song[i] = c;		
+		}
+		
+		
+		
 		String[] columnNames = {"# of popularity","Name of Playlist"};
 		Object[][] data = {
-				{new Integer(1),"song#1"},
-				{new Integer(2),"song#2"},
-				{new Integer(3),"song#3"},
-				{new Integer(4),"song#4"},
-				{new Integer(5),"song#5"},
-				{new Integer(6),"song#6"},
-				{new Integer(7),"song#7"},
-				{new Integer(8),"song#8"}};
+				{new Integer(1),song[0]},
+				{new Integer(2),song[1]},
+				{new Integer(3),song[2]},
+				{new Integer(4),song[3]},
+				{new Integer(5),song[4]},
+				{new Integer(6),song[5]},
+				{new Integer(7),song[6]},
+				{new Integer(8),song[7]}};
 		table = new JTable(data,columnNames);
 		table.setEnabled(false);
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
